@@ -14,10 +14,20 @@ Nandi Team
 
 ## Usage
 
+Be sure to change the configurations and add switches to the dictionary
+
 Install the required dependencies:
 
 ```
+
+python3 -m venv venv
+
+source venv/bin/activate
+
 pip install -r requirements.txt
+
+python3 find_mac_address.py -m MacAddress
+
 ```
 
 

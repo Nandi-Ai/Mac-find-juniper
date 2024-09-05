@@ -1,14 +1,14 @@
 from pyzabbix import ZabbixAPI
 import config
 
-# zabbix server ip address
-server = config.server
-# username to enter in zabbix
-username = config.username
-# zabbix password
-password = config.password
-# zabbix group name where switches is located.
-group_name = config.group_name
+
+server = config.server # zabbix server ip address
+
+username = config.username # username to enter in zabbix
+
+password = config.password # zabbix password
+
+group_name = config.group_name # zabbix group name where switches is located.
 
 
 # function that connecting to zabbix server.

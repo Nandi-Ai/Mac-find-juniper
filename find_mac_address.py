@@ -12,35 +12,35 @@ switches = {
             'Switch_Name': 'IP_Address', 
            }
 
-switch_username = config.switch_username
-switch_password = config.switch_password
+switch_username = config.switch_username # server username for ssh to connect 
+switch_password = config.switch_password # server password
 
-show_lldp_neighbors = config.show_lldp_neighbors
-show_ethernet_switching_table = config.show_ethernet_switching_table
+show_lldp_neighbors = config.show_lldp_neighbors # switch command 
+show_ethernet_switching_table = config.show_ethernet_switching_table # switch command 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-m', required=True, help="Mac Address")
 args = parser.parse_args()
 
 
-# connect to ssh.
+# Establishing an ssh connection to execute commands on the server
 def ssh_connect():
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         return ssh
     except Exception as err:
-        print("Error While Estabilish To ssh Connection.  Error Message:", err)
+        print("Error While Estabilish an ssh Connection.  Error Message:", err)
         return False
 
 
-# function that comparing est port to lldp port and searching if the specified port is located on Swit
+# function that comparing est port to lldp port and searching if the specified port is located on Switch
 def get_switch_name(lldp_lines, est_line, swirch_name):
     # spliting est line 
     etssplit = est_line.split()
-    # getting port from line and  deleting the last null
-    port = etssplit[4].split('.')[0]
-    vlan = etssplit[0]            
+   
+    port = etssplit[4].split('.')[0]  # getting port from line and  deleting the last null
+    vlan = etssplit[0]  # getting vlan 
     
     # if port is ae we return false and conitinue process
     if  port[:2] == "ae":
@@ -101,7 +101,7 @@ def jumping_switch_to_switch(switch_name, mac_address, ssh):
                                 switch_name = switchname
                                 break
 
-
+# function that trying to find mac address in switch
 def find_mac_address(ssh, mac_address: str) -> dict:
     for sw_name, ip in switches.items():
         try:
@@ -110,7 +110,9 @@ def find_mac_address(ssh, mac_address: str) -> dict:
             print(f"Successfully Connected To  {sw_name}, {ip}")
         except Exception as err:
             print(f"Error while connecting to switch. Switch Name: {sw_name}, Ip: {ip}.   Error Message: ", err)
+            # if its error while connecting to switch. we will continue work to connect Another switch
             continue
+        
         # running show ethernet switching table inside the switch
         estin, estout, est_err = ssh.exec_command(show_ethernet_switching_table)
         if estout:
@@ -158,9 +160,9 @@ if __name__ == "__main__":
     else:
         print("Using locall switch names and ips")
     
-    # If everything is okay trying to estabilish ssh connection to paramiko
-    ssh = ssh_connect()
-    if ssh:                     
+    ssh = ssh_connect() # trying to estabilish an ssh connection
+    # if ssh exsist 
+    if ssh:                            #MacAddress
         output = find_mac_address(ssh, args.m)
         if output:    
             print("****** Completed ******")

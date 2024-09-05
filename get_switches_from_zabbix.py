@@ -1,11 +1,15 @@
 from pyzabbix import ZabbixAPI
 import config
 
-
+# zabbix server ip address
 server = config.server
+# username to enter in zabbix
 username = config.username
+# zabbix password
 password = config.password
+# zabbix group name where switches is located.
 group_name = config.group_name
+
 
 # function that connecting to zabbix server.
 def connect_to_zabbix():
@@ -20,9 +24,11 @@ def connect_to_zabbix():
 
 # function that getting switch names and ips from zabbix server.
 def get_switches_from_zabbix() -> dict:
+    # define empty dictionary for to append some data inside
     switches = {}
+    # counting  switches, how many exsist inside zabbix
     switch_count = 0
-    
+    # connecting to zabbix server
     zabbix_conn = connect_to_zabbix()
     
     if zabbix_conn:
@@ -38,6 +44,7 @@ def get_switches_from_zabbix() -> dict:
             print(f"No hosts found in the host group: '{group_name}'.   Error Message: {err}")
             return False
 
+        # loop that getting switch names and ips from hosts. and appending in dictionary
         for host in hosts:
             try: 
                 switch_count += 1

@@ -1,19 +1,24 @@
 
-# zabbix server ip address.
-server = "http://ip_address"
-# username for zabbix
-username = "UserName"
-# password for zabbix
-password = "Password"
-#The name of the group where the switches are located
-group_name = "GrouPname"
+### Config For Zabbix ###
+server = "http://ip_address" # zabbix server ip address.
+
+username = "UserName" # username for zabbix
+
+password = "Password" # password for zabbix
+
+group_name = "GrouPname" #The name of the group where the switches are located
+#########################
 
 
-# username for switch
-switch_username = "UserName"
-# Password for switch
-switch_password = "Password"
+### Config For Switch ###
+switch_username = "UserName" # username for swtich
 
-# commands for switch.
+switch_password = "Password" # Password for switch
+#########################
+
+
+### Command for switches.
 show_lldp_neighbors = "show lldp neighbors"
+
 show_ethernet_switching_table = "show ethernet-switching table"
+#########################

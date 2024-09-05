@@ -12,12 +12,15 @@ found it super usefull
 Nandi Team
 
 
-## Usage
+## IMPORTANT
+If you have a Zabbix server, make sure to add the username, password, group_name where the switches are located, and the IP address of the server, in the config.py file.
+for obtain Switch and IP addresses automatically, if you dont have zabbix server be sure to add switches and ips in the dictionary named (switches) inside the find_mac_address.py
 
-Be sure to change the configurations and add switches to the dictionary
+## Usage
 
 Install the required dependencies:
 
+for linux distributions
 ```
 
 python3 -m venv venv
@@ -27,6 +30,19 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 python3 find_mac_address.py -m MacAddress
+
+```
+
+for windows
+```
+
+python -m venv venv
+
+venv\Scripts\activate 
+
+pip install -r requirements.txt
+
+python find_mac_address.py -m MacAddress
 
 ```
 

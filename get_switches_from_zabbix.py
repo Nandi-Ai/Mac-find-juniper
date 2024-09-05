@@ -3,19 +3,22 @@ import config
 
 
 server = config.server # zabbix server ip address
-
 username = config.username # username to enter in zabbix
-
 password = config.password # zabbix password
-
 group_name = config.group_name # zabbix group name where switches is located.
 
 
 # function that connecting to zabbix server.
 def connect_to_zabbix():
+    """
+    Connects to the Zabbix server using the provided credentials and returns a ZabbixAPI client object.
+    Returns:
+        ZabbixAPI: The ZabbixAPI client object if the connection is successful.
+        bool: False if there is an error while connecting to the Zabbix server.
+    """
     try:
-        zabbix_conn = ZabbixAPI(server)
-        zabbix_conn.login(username, password)
+        zabbix_conn = ZabbixAPI(server)     # Create a ZabbixAPI client instance with the server URL
+        zabbix_conn.login(username, password)     # Attempt to log in with the provided username and password
         print(f"Logged in successfully. Auth Token: {zabbix_conn.auth}")
         return zabbix_conn
     except Exception as err:
@@ -24,12 +27,10 @@ def connect_to_zabbix():
 
 # function that getting switch names and ips from zabbix server.
 def get_switches_from_zabbix() -> dict:
-    # define empty dictionary for to append some data inside
-    switches = {}
-    # counting  switches, how many exsist inside zabbix
-    switch_count = 0
-    # connecting to zabbix server
-    zabbix_conn = connect_to_zabbix()
+  
+    switches = {}   # define empty dictionary for to append some data inside
+    switch_count = 0    # counting  switches, how many exsist inside zabbix
+    zabbix_conn = connect_to_zabbix()   # connecting to zabbix server
     
     if zabbix_conn:
         try:

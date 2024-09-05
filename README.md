@@ -12,12 +12,13 @@ found it super usefull
 Nandi Team
 
 
+
 ## IMPORTANT
-If you have a Zabbix server, make sure to add the username, password, group_name where the switches are located, and the IP address of the server, in the config.py file.
-for obtain Switch and IP addresses automatically, if you dont have zabbix server be sure to add switches and ips in the dictionary named (switches) inside the find_mac_address.py
+If you have a Zabbix server, make sure to add the username, password, group name where the switches are located, and the IP address of the server to the config.py file
+To get switch and IP addresses automatically. If you don't have a zabbix server, make sure to add switches and IP addresses Dictionary named (switches) in find_mac_address.py, Then follow the instructions...
+
 
 ## Usage
-
 Install the required dependencies:
 
 for linux distributions

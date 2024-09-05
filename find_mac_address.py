@@ -7,9 +7,8 @@ from get_switches_from_zabbix import get_switches_from_zabbix
 
 # enter your switch names and ips
 switches = {
-            'Switch_1': 'ip Adress',
-            'Switch_2': 'ip Adress', 
-            'Switch_3': 'ip Adress',  
+            'Juniper-3400-BB-FL-13': '172.28.150.15', 
+            'Floor-14-down': '172.28.150.3',
            }
 
 switch_username = config.switch_username
@@ -72,8 +71,9 @@ def jumping_switch_to_switch(switch_name, mac_address, ssh):
             ssh.connect(switches[switch_name], username=switch_username, password=switch_password, timeout=300)
             print("Successfully connected")
         except Exception as err:
-            print(f"error while connecting switch {switch_name} ip: {switches[switch_name]}. Error Message: {err}")
-            continue
+            print(f"Error while connecting switch {switch_name}. Error Message: {err}")
+            print("Returning False")
+            return False, False, False, False
             
         estin, estout, est_err = ssh.exec_command(show_ethernet_switching_table)
         if estout: 
@@ -131,9 +131,9 @@ def find_mac_address(ssh, mac_address: str) -> dict:
                        if switch_name == False:
                            break
                        if status == False:
-                           sw_n, port, vlan, status = jumping_switch_to_switch(switch_name, mac_address, ssh)
+                           switchname, port, vlan, status = jumping_switch_to_switch(switch_name, mac_address, ssh)
                            ssh.close()
-                           return {"SWITCH_NAME": sw_n,
+                           return {"SWITCH_NAME": switchname,
                                    "PORT": port,
                                    "VLAN": vlan
                                 }

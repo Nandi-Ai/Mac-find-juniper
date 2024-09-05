@@ -7,6 +7,7 @@ username = config.username
 password = config.password
 group_name = config.group_name
 
+# function that connecting to zabbix server.
 def connect_to_zabbix():
     try:
         zabbix_conn = ZabbixAPI(server)
@@ -17,6 +18,7 @@ def connect_to_zabbix():
         print(f"Error while connecting to zabbix.    Error Message:  {err}")
         return False
 
+# function that getting switch names and ips from zabbix server.
 def get_switches_from_zabbix() -> dict:
     switches = {}
     switch_count = 0

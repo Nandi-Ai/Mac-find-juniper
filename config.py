@@ -1,17 +1,17 @@
 
 # zabbix server ip address.
 server = "http://ip_address"
-# username of zabbix
+# username for zabbix
 username = "UserName"
-# password of zabbix
+# password for zabbix
 password = "Password"
 #The name of the group where the switches are located
 group_name = "GrouPname"
 
 
-# swtich username
+# username for switch
 switch_username = "UserName"
-# swutch Password
+# Password for switch
 switch_password = "Password"
 
 # commands for switch.

@@ -7,8 +7,9 @@ from get_switches_from_zabbix import get_switches_from_zabbix
 
 # enter your switch names and ips
 switches = {
-            'Juniper-3400-BB-FL-13': '172.28.150.15', 
-            'Floor-14-down': '172.28.150.3',
+            'Switch_Name': 'IP_Address', 
+            'Switch_Name': 'IP_Address', 
+            'Switch_Name': 'IP_Address', 
            }
 
 switch_username = config.switch_username

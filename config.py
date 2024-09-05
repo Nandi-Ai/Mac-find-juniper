@@ -10,9 +10,9 @@ group_name = "GrouPname"
 
 
 # username for switch
-switch_username = "cts"
+switch_username = "UserName"
 # Password for switch
-switch_password = "CTSaDmin"
+switch_password = "Password"
 
 # commands for switch.
 show_lldp_neighbors = "show lldp neighbors"
